@@ -1,8 +1,8 @@
-# Load necessary packages into R session
+# Load packages into R
 library(readr)
 library(dplyr)
 
-# Read data into R, initializing column types
+# Read data into R
 pdata <- read_delim("household_power_consumption.txt",
                     delim = ";",
                     locale = locale(decimal_mark = "."), 
@@ -10,10 +10,9 @@ pdata <- read_delim("household_power_consumption.txt",
                     col_types = list(col_date(format = "%d/%m/%Y"),
                                      col_time(format = "%H:%M:%S"),
                                      "n", "n","n","n","n","n","n"))
-# Filter rows to appropriate dates
+# subset data
 pdata <- pdata %>%
   filter(Date == "2007-02-01" | Date == "2007-02-02") %>%
-  # Combine Date and Time into new column: datetime
   mutate(DateTime = as.POSIXct(paste(Date, Time)))
 
 #Plot 3 - Energy sub metering
