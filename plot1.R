@@ -2,16 +2,15 @@
 library(readr)
 library(dplyr)
 
-# Read data into R, initializing column types
+# Read data into R
 pdata <- read_delim("household_power_consumption.txt",
-                              delim = ";",
-                              locale = locale(decimal_mark = "."), 
-                              na = "?",
-                              col_types = list(col_date(format = "%d/%m/%Y"),
-                                               col_time(format = "%H:%M:%S"),
-                                               "n", "n","n","n","n","n","n"))
-
-# Filter rows to appropriate dates
+                    delim = ";",
+                    locale = locale(decimal_mark = "."), 
+                    na = "?",
+                    col_types = list(col_date(format = "%d/%m/%Y"),
+                                     col_time(format = "%H:%M:%S"),
+                                     "n", "n","n","n","n","n","n"))
+# subset data
 pdata <- pdata %>%
   filter(Date == "2007-02-01" | Date == "2007-02-02") %>%
   mutate(DateTime = as.POSIXct(paste(Date, Time)))
