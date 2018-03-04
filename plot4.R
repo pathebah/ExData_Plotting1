@@ -1,4 +1,4 @@
-# Load necessary packages into R session
+# Load packages into R 
 library(readr)
 library(dplyr)
 
