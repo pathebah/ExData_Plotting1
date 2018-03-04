@@ -1,4 +1,4 @@
-# Load necessary packages into R session
+# Load packages into R
 library(readr)
 library(dplyr)
 
@@ -13,7 +13,6 @@ pdata <- read_delim("household_power_consumption.txt",
 # Filter rows to appropriate dates
 pdata <- pdata %>%
   filter(Date == "2007-02-01" | Date == "2007-02-02") %>%
-  # Combine Date and Time into new column: datetime
   mutate(DateTime = as.POSIXct(paste(Date, Time)))
 
 #Plot 2 - Global active power by day
